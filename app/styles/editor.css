@@ -43,3 +43,22 @@
 .ce-element--focused, .ce-element--over {
 	background-color: white;
 }
+
+/* Custom */
+
+body {
+	font-family: "Work Sans", "Arial", sans-serif, sans-serif;
+	color: #74848e;
+}
+
+h6, p, ul {
+	font-weight: 300;
+	line-height: 24px;
+	font-size: 20px;
+	color: #74848e;
+}
+
+blockquote, h6, p {
+	color: #74848e;
+}
+
