@@ -48,9 +48,8 @@ window.addEventListener('load', function () {
 
 		xhr = new XMLHttpRequest();
 		xhr.addEventListener('readystatechange', onStateChange);
-		xhr.open('POST', '/save-my-page');
+		xhr.open('POST', 'http://localhost:5000/save-my-page');
 		xhr.send(payload);
-		alert("saved");
 	});
 
 	// Add support for auto-save
