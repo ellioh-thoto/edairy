@@ -1,4 +1,4 @@
-from flask import Flask, abort, render_template
+from flask import Flask, abort, request, render_template
 import os
 
 # Create the app
@@ -9,18 +9,19 @@ app = Flask(__name__)
 def show_page(page):
     """Map a URL path to a HTML filename"""
     html_root = os.path.abspath('html')
-    filename = os.join('html', page) + '.html'
+    print 'TEST : html_root : ' + html_root
 
-    # Is the filename safe to access?
-    if not os.path.abspath(filename).startswith(html_root):
-        abort(404)
+    filename = os.path.join('app/html', page) + '.json'
+    # filename = os.path.join('html', page)
+    filename_abs = os.path.abspath(filename)
+    print 'TEST : filename_abs : ' + filename_abs
 
     # Do we have an HTML file to match the URL?
-    if not os.exists(filename):
+    if not os.path.exists(filename_abs):
         abort(404)
 
     # Load the contents of our HTML file
-    with open(filename, 'r') as f:
+    with open(filename_abs, 'r') as f:
         html = f.read()
 
     return html
@@ -29,10 +30,17 @@ def show_page(page):
 def save_page():
     """Save changes to a page"""
 
+    print 'ENTER...'
+
     html_root = os.path.abspath('html')
 
+    print 'PASS 1 ...'
     # Find the page
     filename = request.form['__page__']
+
+    print 'PASS 2 ...'
+    print 'TEST : filename : ' + filename
+
     if filename == '':
         filename = 'index' # The index page will appear as ''
     filename += '.html'
