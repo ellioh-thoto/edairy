@@ -4,7 +4,7 @@
 (function () {
 	window.onload = function () {
 
-
+		var fieldNameElement = document.getElementById('editor');
 		var editor;
 		ContentTools.StylePalette.add([
 			new ContentTools.Style('Author', 'author', ['p'])
@@ -27,11 +27,14 @@
 
 			// Collect the contents of each region into a FormData instance
 			payload = new FormData();
-			payload.append('__page__', window.location.pathname);
-			console.info('window.location.pathname : ' + window.location.pathname);
+			var title = document.getElementById("ediary-title").textContent;
+			var filename = document.getElementById("ediary-filename").textContent;
+			payload.append('__title__', title);
+			payload.append('__filename__', filename);
+			console.info('title : ' + title);
+			console.info('filename : ' + filename);
 			for (name in regions) {
 				if (regions.hasOwnProperty(name)) {
-					console.info(name + ' : ' + regions[name]);
 					payload.append(name, regions[name]);
 				}
 			}
@@ -53,7 +56,7 @@
 
 			xhr = new XMLHttpRequest();
 			xhr.addEventListener('readystatechange', onStateChange);
-			xhr.open('POST', 'http://localhost:5000/save-my-page');
+			xhr.open('POST', 'http://ediary:8080/save-my-page');
 			xhr.send(payload);
 		});
 
@@ -75,43 +78,21 @@
 		});
 
 		// init editor
-		var fieldNameElement = document.getElementById('editor');
-		fieldNameElement.innerHTML = "<p>Waiting upda" +
-			"" +
-			"te...</p>";
 
-		//
+		fieldNameElement.innerHTML = "<p>Le bonheur devrait être déjà là... :/</p>";
 
 		function reqListener(ev) {
 			console.log(ev.target.responseText);
-			var translations;
 			if (ev.target.readyState === 4) {
 				console.info('Request OK');
 				fieldNameElement.innerHTML = '<p>'+ev.target.responseText+'</p>';
-				return ContentEdit.LANGUAGE = 'lp';
 			}
 		}
 		var oReq = new XMLHttpRequest();
 		oReq.onload = reqListener;
 		oReq.overrideMimeType('application/json');
 		oReq.open("get", "http://ediary/html/monfichier.html", true);
-		// oReq.open("get", "https://raw.githubusercontent.com/GetmeUK/ContentTools/master/translations/lp.json", true);
 		oReq.send();
-
-
-		// req = new XMLHttpRequest();
-		// req.overrideMimeType('application/json');
-		// req.open('GET', 'https://raw.githubusercontent.com/GetmeUK/ContentTools/master/translations/lp.json', true);
-		// return req.onreadystatechange = function (ev) {
-		// 	var translations;
-		// 	if (ev.target.readyState === 4) {
-		// 		console.info('couoc');
-		// 		translations = JSON.parse(ev.target.responseText);
-		// 		console.info(translations);
-		// 		ContentEdit.addTranslations('lp', translations);
-		// 		return ContentEdit.LANGUAGE = 'lp';
-		// 	}
-		// };
 	}
 
 	}).call(this);

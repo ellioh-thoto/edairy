@@ -62,3 +62,6 @@ blockquote, h6, p {
 	color: #74848e;
 }
 
+#ediary-title, #ediary-filename {
+	display: none
+}
