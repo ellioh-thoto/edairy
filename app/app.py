@@ -11,6 +11,9 @@ def show_page(page):
     html_root = os.path.abspath('html')
     print 'TEST : html_root : ' + html_root
 
+    if page == 'undefined':
+        page = index
+
     filename = os.path.join('app/html', page) + '.json'
     # filename = os.path.join('html', page)
     filename_abs = os.path.abspath(filename)
