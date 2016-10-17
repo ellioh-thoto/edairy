@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Analysis Pickup UPS - Done</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+</head>
+<body>
+  <h1>Analysis Pickup UPS - Done</h1>
+  <div id="content">
+    <ul><li>UPS :</li><ul><li>ProcessShipment :</li><li><br></li><ul><li>V2:</li><ul><li>empty fields :&nbsp;</li><ul><li>PickupAvailabilityDetails - empty</li><li>PickupStatus - empty</li></ul></ul><li>expected :&nbsp;</li><ul><li></li><li>&nbsp; &nbsp;&lt;PickupAvailabilityDetails&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;CutOffTime i:nil="true"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;EstimatedPickupDate&gt;<b>1/1/0001</b>&lt;/EstimatedPickupDate&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;EstimatedPickupTime i:nil="true"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/PickupAvailabilityDetails&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;PickupStatus&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;CurrencyCode&gt;<b>EUR</b>&lt;/CurrencyCode&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;DispatchConfirmationNumber&gt;<b>2929602E9CP</b>&lt;/DispatchConfirmationNumber&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;Message i:nil="true"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;StationId i:nil="true"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;Status&gt;true&lt;/Status&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;UpdatedCharge&gt;<b>0.00</b>&lt;/UpdatedCharge&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/PickupStatus&gt;</li></ul><li>Current :&nbsp;</li><ul><li></li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;PickupAvailabilityDetails&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;CutOffTime xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;EstimatedPickupTime xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;ServiceCode xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/PickupAvailabilityDetails&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;PickupStatus&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;CurrencyCode xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;DispatchConfirmationNumber xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;Message xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;StationId xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;Status&gt;false&lt;/Status&gt;</li><li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/PickupStatus&gt;</li><li></li><li><br></li><li><br></li><li><br></li></ul></ul></ul></ul><div>Ricard : "in V1, the WS function that is raised is processShipmentWithPickup()</div><div>[10:58:36] Ricard Castelló Rocamora: and it calls requestPickup (this two functions, are the public methods of WS)</div><div>[10:59:02] Ricard Castelló Rocamora: but in v2, the raised function is processShipment()"</div><div>V1 do 2 calls, processShipmentWithAvailability +requestPickup</div><div>V2 do processShipment only.</div><div><br></div><div>--------------------------------------------------------------------------------------------------------------</div><div><b>Important</b></div><div><p class="MsoNormal">Here is explanation for the issue discussed before about
+Pickup reponse. <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Actually in V1 it is ProcessShipmentWithPickup that is used.
+<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">How does it work&nbsp;?<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]-->1.<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><!--[endif]-->In Web.config<o:p></o:p></p>
+
+<p class="MsoListParagraph">There is a variable that determine if envoy will use ProcessShipmentWithPickup
+or not <o:p></o:p></p>
+
+<p class="MsoListParagraph" style="margin-left:54.0pt;text-indent:-18.0pt;
+mso-list:l1 level1 lfo2"><!--[if !supportLists]--><span style="font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings">ð<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp; </span></span><!--[endif]-->ProcessShipmentServiceWithPickup<o:p></o:p></p>
+
+<p class="MsoListParagraph"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]-->2.<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><!--[endif]-->In ./Libraries/Envoy/Envoy.ServiceInterface/ProcessShipmentService.cs
+&gt; Execute()<o:p></o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:34.8pt">If ProcessShipmentServiceWithPickup
+= true THEN <o:p></o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:34.8pt">We redirect to&nbsp; ProcessShipmentWithPickup. <o:p></o:p></p>
+
+<p class="MsoListParagraph"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">In Envoy V2 we will manage this logic with ESB. <o:p></o:p></p>
+
+<p class="MsoNormal">I mean that OSS will call ESB with processShipment function.
+<o:p></o:p></p>
+
+<p class="MsoNormal">Then ESB will redirect to processShipmentWithPickup if mesenvois
+is the caller.&nbsp;<o:p></o:p></p><p class="MsoNormal"><br></p><p class="MsoNormal"><b>Business&nbsp;</b></p><p class="MsoNormal"><br></p><p class="MsoNormal">Before creating an on-call pickup, it is suggested the client first rate the</p><p class="MsoNormal">on-call pickup to get the detailed charge.</p><p class="MsoNormal"> If the total charge for a specific pickup is zero charge, then when</p><p class="MsoNormal">attempting to schedule the pickup, it is not necessary to provide charge</p><p class="MsoNormal">card, account, or other means as the payment method.</p><p class="MsoNormal">--------------------------------------------------------------------------------------------------------------------</p><p class="MsoNormal"><b>Notes</b></p><p class="MsoNormal">Delivery contact mandatory</p><p class="MsoNormal"><br></p><p class="MsoNormal">&nbsp; &nbsp;// if RequestPickup failed, void the shipment???</p><p class="MsoNormal"><br></p><p class="MsoNormal"><strike>TODO: Pickup request failed : raison non retournée</strike>&nbsp;=&gt; missing delivery contact and service code wrong</p><p class="MsoNormal"><br></p><p class="MsoNormal">TO CHECK : requete carrier</p><p class="MsoNormal">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;ns2:AccountCountryCode&gt;<b>US</b>&lt;/ns2:AccountCountryCode&gt;</p><p class="MsoNormal"><br></p><p class="MsoNormal">TODO : validate all response data</p><p class="MsoNormal">TODO : if processShipmentWithPickup and &nbsp;processShipment request received THEN improve WARN returned message</p><p class="MsoNormal"><br></p><p class="MsoNormal">"unwinding now"</p><p class="MsoNormal"><br></p><p class="MsoNormal">Todo : Commit code changes</p><p class="MsoNormal"><br></p><p class="MsoNormal">request to ups :&nbsp;</p><p class="MsoNormal">working :&nbsp;</p><p class="MsoNormal"></p><ul><li>pickup date??? SEEMS TO BE NOT TAKEN INTO ACCOUNT BY carrier :&nbsp;</li></ul><p></p></div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><li><span class="Apple-tab-span" style="white-space:pre">			</span>&lt;ns2:PickupDateInfo&gt;</li></div></blockquote><div><ul><ul><li></li><li><span class="Apple-tab-span" style="white-space:pre">				</span>&lt;ns2:CloseTime&gt;1800&lt;/ns2:CloseTime&gt;</li><li><span class="Apple-tab-span" style="white-space:pre">				</span>&lt;ns2:ReadyTime&gt;1300&lt;/ns2:ReadyTime&gt;</li><li><span class="Apple-tab-span" style="white-space:pre">				</span>&lt;ns2:PickupDate&gt;20150514&lt;/ns2:PickupDate&gt;</li><li><span class="Apple-tab-span" style="white-space:pre">			</span>&lt;/ns2:PickupDateInfo&gt;</li></ul><li><strike>&nbsp;&lt;PickupServiceIndicator&gt;11D3&lt;/PickupServiceIndicator&gt; ??? =&gt; DELETED&nbsp;</strike></li></ul><div><br></div><div>Packaging type a controler : =&gt; ok in processSHipment</div></div><div><b>If request pickup fail =&gt; cancel processShipment?</b></div><div><b><br></b></div><div><b>Issue : request pickup : we can have no dispatch confirmation number and the envoy can return pickup succeded</b></div><div><br></div><div><div>SOAP 1.1 : xmlns:soapenv ="http://schemas.xmlsoap.org/soap/envelope/"</div><div>SOAP 1.2 : xmlns:soap &nbsp; &nbsp; &nbsp;="http://www.w3.org/2003/05/soap-envelope"</div></div>
+  </div>
+</body>
+</html>

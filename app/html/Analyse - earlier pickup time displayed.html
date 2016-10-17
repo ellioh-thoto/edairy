@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Analyse - earlier pickup time displayed</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+</head>
+<body>
+  <h1>Analyse - earlier pickup time displayed</h1>
+  <div id="content">
+    <ul><li>\Nfrance_Ship_IndexController::processAction</li></ul><div><br></div><div><span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;</span></span></span><ul><li>shipping en mode Wizard&nbsp;</li><ul><li>step3</li><ul><li>time displayed get by :&nbsp;http://mailroom-eth.oss.neopost-id.com/modules/oss/parcel/wizard/partial-collection-delivery/?b_GetCollectionDelivery=1&amp;b_GetService=1&amp;b_GetPrice=1&amp;b_IsRecalculate=1&amp;b_GetRateOnly=1&amp;b_IsFromStep2=1</li><ul><li>earlier time get from :</li><ul><li>\Parcel_WizardController::getServiceAttributes</li><ul><li>\Nid_Oss_Model_Parcel_Validate::a_CalculationCollectionTimeFromTo</li><li>l. 2838</li><font face="courier new, monospace">if ((int) substr(Nid_Oss_Const::SHIP_OPTIONS_COLLECTION_TIME_FROM, 0, 2) &lt;= (int) $i_CurrentHour) {<br> $sz_CollectionTimeFromStart = $i_CurrentHour + 1 . ':00:00';<br>} else {<br> $sz_CollectionTimeFromStart = Nid_Oss_Const::SHIP_OPTIONS_COLLECTION_TIME_FROM;<br>}</font></ul><li>--</li><span><span><span>&nbsp;</span></span></span><br></ul></ul></ul></ul></ul></div>
+  </div>
+</body>
+</html>

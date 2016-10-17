@@ -19,8 +19,6 @@ try {
     $curl_response = curl_exec($curl);
 
     if ($curl_response === false) {
-        echo "pass false";
-
         $info = curl_getinfo($curl);
         curl_close($curl);
         die('error occured during curl exec. Additioanl info: ' . var_export($info));

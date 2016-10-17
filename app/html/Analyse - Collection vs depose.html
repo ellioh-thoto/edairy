@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Analyse - Collection vs depose</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+</head>
+<body>
+  <h1>Analyse - Collection vs depose</h1>
+  <div id="content">
+    <ul><li>Get collection vs depose information :&nbsp;</li><ul><li><font face="courier new, monospace">SELECT SHIP_SHP_id, SHIP_SHP_ShipmentNumber, SHIP_OPT_RequestCollection, SHIP_OPT_DepotCollection FROM SHIP_Shipments sh join SHIP_Options op ON sh.SHIP_SHP_id = op.SHIP_OPT_SHP_id where SHIP_SHP_id LIKE '500198';</font></li></ul><li>Get last shipment util information :&nbsp;</li><ul><li></li><li><font face="courier new, monospace">&nbsp;SELECT SHIP_SHP_id, SHIP_SHP_ShipmentNumber, SHIP_SHP_Status, SHIP_OPT_RequestCollection, SHIP_OPT_DepotCollection FROM SHIP_Shipments sh join SHIP_Options op ON sh.SHIP_SHP_id = op.SHIP_OPT_SHP_id where SHIP_SHP_id = (SELECT SHIP_SHP_id FROM SHIP_Shipments ORDER BY SHIP_SHP_id DESC limit 1)</font></li></ul><li>import-step2</li><ul><li>Insert data in table temporaire (table created if not exists) - IMPORT_TEMP_TABLE_[id]</li><li>Shipment inserted in ship_shipment table in&nbsp;</li><ul><li>oss/web/Nfrance/modules/isd/controllers/ImportStep2Controller.php</li><ul><li>importAction&nbsp;</li><ul><li>l 91 : $this-&gt;_finalizeImport();</li><ul><li>\Nid_Oss_Isd_Import_Integrate_ShipmentsIntegrator::b_fSaveData</li><ul><li>\Nid_Oss_Isd_Import_Integrate_Shipment::o_fBuildShipmentOptim</li><ul><li>\Nid_Oss_Isd_Import_Integrate_Shipment::v_fGetShipOption</li><font face="courier new, monospace">$o_SHIP_Options-&gt;SHIP_OPT_RequestCollection = ($this-&gt;sz_fGet('HANDOVER_MODE') == Nid_Oss_Isd_Const::HANDOVER_MODE_COLLECTION) ? 1 : 0;</font></ul><li>\Nid_Oss_Model_Shipment::i_fSaveShipmentObjectOptim</li></ul></ul></ul></ul></ul></ul></ul>
+  </div>
+</body>
+</html>

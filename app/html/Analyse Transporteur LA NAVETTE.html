@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Analyse Transporteur LA NAVETTE</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+</head>
+<body>
+  <h1>Analyse Transporteur LA NAVETTE</h1>
+  <div id="content">
+    <ul><li>Widget:&nbsp;</li></ul><div><ul><ul><li>Prix comparatifs proposés entre les points relais selectionnés. (IMPROVEMENT API ENVOY?)</li><li>same Gmap then mondial relay</li></ul><li>Shipfrom asked - Shipto not asked</li><li>Pochette :</li><ul><li>Profondeur de la pochette? 50x50x5 20kg</li><li>On peut envoyer plusieurs colis a la fois</li></ul><li>Est ce que filtre de service par poids dans OSS?</li><li>Particulier et pro</li><li>Prix max?</li><li>Remboursement max 25euros</li><li>Contact :&nbsp;<span style="font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;;
+mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+FR;mso-fareast-language:FR;mso-bidi-language:AR-SA">Camille Ronge [<a href="mailto:c.ronge@pickup-services.com">mailto:c.ronge@pickup-services.com</a>]</span></li><li>France only</li><li>Grille des prochette acceptés?</li><li>Suggestion : proposer à l'utilisateur la liste exhaustive des produits acceptés</li><li>Contact WS:p.valin@pickup-services.com Henri To – h.to@pickup-services.com.</li><li>IMPORTANT : ne pas faire de tests de charge en UAT.</li><li>API:</li><ul><li></li><li>Functions:</li><ul><li>GetPudo</li><li>• GetPricesFromPartner</li><li>• CreateFromPartner</li><li>• GetEventsByReferenceColis</li><li>• DownloadEtiquette</li></ul><li>UAT :http://test-web-navette.pickup.fr/v1/Navette.svc</li></ul></ul></div>
+
+<ul><li>Si la personne paye une commande le 06/01 mais l’amène dans un point relais le 15/01 est-ce que cela a un impact dans vos systèmes, y a-t-il des frais spécifics ? L’étiquette de transport est valable 10 jours. Dans votre exemple, c’est OK. Par contre, ne permettre une commande que dans les 10 jrs précédents la date de dépôt prévue par le client.</li><br><li>Combien de temps conservez-vous l’information en base à 12 mois</li><li>et que se passe-t-il si jamais le colis n’est jamais déposé en point relais et pour autant a été payé? De notre côté, les navettes non déposées ne sont pas encaissées. Donc non comptabilisées. Ces navettes sont encaissées de votre côté. Donc si le client demande un remboursement c’est à vous de l’effectuer.</li><li>Tracking</li><ul><li>o   Pour les events tracking vous retournez à chaque appel tous les status tracking disponible pour cette expédition. Peut ’on mettre dans la même requête une liste de référence colis ou bien c’est 1 appel pour 1 colis ? c’est 1 appel pour 1 colis</li></ul><li>Recette</li><ul><li><p class="MsoNormal"><o:p>&nbsp;</o:p>Y a-t-il un jeux de tests spécifiques à faire ou une procédure de validation des développements particulière pour pouvoir passer dans un mode production ? Nous disposons d’un environnement de tests sur lequel nos partenaires effectuent l’intégration des services. Dés que vos développements en phase de tests sont OK, il y a des tests fonctionnels avec le marketing pickup (Camille Ronge) pour un GO en prod.</p></li></ul></ul>
+  </div>
+</body>
+</html>

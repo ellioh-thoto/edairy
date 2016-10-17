@@ -1,35 +1,13 @@
-<p>
-    
-</p>
-<p>
-    
-</p>
-<p>
-    
-</p>
-<p>
-    
-</p>
 <div id="ediary-filename">monfichier</div>
 <div id="ediary-title">Mon Fichier</div>
 <p>
-    FROOM API !! It's sdseedssssnice hsesre modificoucoued
+    <b>active desactive subscription</b>
 </p>
-<p>
-    ssqdsqdqd
-</p>
-<p>
-    nouveau
-</p>
-<p>
-    ENCOREsssssss
-</p>
-<p>
-    tutututu
-</p>
-<p>
-    
-</p>
+<pre>UPDATE Subscription_Core
+  JOIN Location ON Location.Customer__ = Subscription_Core.Customer__
+  JOIN Customer USING (Location__)
+SET Active = 0
+WHERE Location.Email LIKE 'part.princ1-107%';</pre>
 <p>
     
 </p>

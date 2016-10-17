@@ -57,7 +57,7 @@
 
 			xhr = new XMLHttpRequest();
 			xhr.addEventListener('readystatechange', onStateChange);
-			xhr.open('POST', 'http://ediary/proxy.php');
+			xhr.open('POST', 'http://ediary/save.php');
 			xhr.send(payload);
 		});
 
