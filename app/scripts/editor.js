@@ -15,24 +15,6 @@ var editorTitleNode = document.getElementById('editor-title');
 		document.getElementsByClassName('ct-app').item(0).className = "ct-app hide";
 	};
 
-	window.onhashchange = function () {
-		loadPage();
-	};
-	if (("onhashchange" in window) && !($.browser.msie)) {// event onhashchange supported?
-		window.onhashchange = function () {
-			loadPage();
-		}
-	}
-	else { // event not supported:
-		var prevHash = window.location.hash;
-		window.setInterval(function () {
-			if (window.location.hash != prevHash) {
-				prevHash = window.location.hash;
-				loadPage();
-			}
-		}, 100);
-	}
-
 	}).call(this);
 
 
