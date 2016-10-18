@@ -63,8 +63,8 @@ def save_page():
     print 'PASS 3 ...'
 
     # Do we have an HTML file to match the URL?
-    if not os.path.exists(filename_abs):
-        abort(404)
+#    if not os.path.exists(filename_abs):
+#        abort(404)
 
     print 'PASS 4 ...'
 

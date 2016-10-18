@@ -49,9 +49,20 @@
       }
     </style>
   </head>
+
+  <!-- ---------------------- BODY ------------------------------------------ -->
+
   <body>
   <br><br><br><br>
   <section>
+    <div id="newfileDiv">
+      <input id="newNoteButton" type="button" width="100" value="Nouvelle note" >
+      <form class="hide" name="myform" id="myform" onsubmit="createNote(); return false;">
+        <input name="newfile" type="text"/>
+        <!--<input type="button" width="100" value="Créer" onclick="javascript:createNote()" name="Créer"/>-->
+        <input type="submit" width="100" value="Créer" name="Créer"/>
+      </form>
+    </div>
     <div><h1 id="editor-title"></h1></div>
     <div id="editor" class="mdl-cell mdl-cell--12-col" data-editable data-name="main-content">
       <!-- editable main-content -->

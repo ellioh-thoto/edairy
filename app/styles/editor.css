@@ -65,3 +65,7 @@ blockquote, h6, p {
 #ediary-title, #ediary-filename {
 	display: none
 }
+
+.hide {
+	display:none;
+}

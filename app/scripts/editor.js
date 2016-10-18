@@ -1,11 +1,14 @@
 /**
  * Created by ellioh on 19/09/16.
  */
+
+var editorNode = document.getElementById('editor');
+var editorTitleNode = document.getElementById('editor-title');
+
+
 (function () {
 	window.onload = function () {
 
-		var editorNode = document.getElementById('editor');
-		var editorTitleNode = document.getElementById('editor-title');
 		var editor;
 		ContentTools.StylePalette.add([
 			new ContentTools.Style('Author', 'author', ['p'])
@@ -48,6 +51,7 @@
 					if (ev.target.status == '200') {
 						// Save was successful, notify the user with a flash
 						new ContentTools.FlashUI('ok');
+
 					} else {
 						// Save failed, notify the user with a flash
 						new ContentTools.FlashUI('no');
@@ -106,6 +110,11 @@
 		oReq.send();
 	}
 
+	document.getElementById('newNoteButton').onclick = function () {
+		document.getElementById('newNoteButton').className = "hide";
+		document.getElementById('myform').className = "";
+		document.getElementsByClassName('ct-app').item(0).className = "ct-app hide";
+	}
 	}).call(this);
 
 
@@ -131,3 +140,22 @@ var PARAMS = function () {
 	}
 	return query_string;
 }();
+
+
+function createNote() {
+	var newTitle = document.getElementById("myform").elements['newfile'].value;
+	// alert("pass : " +newTitle);
+
+	var form = document.getElementById('myform');
+
+	form.className = "hide";
+
+
+	editorNode.innerHTML ='<div id="ediary-filename">'+newTitle+'</div>'+
+	'<div id="ediary-title">'+newTitle+'</div>';
+	editorTitleNode.innerHTML=newTitle;
+	document.getElementById('newNoteButton').className = "";
+	document.getElementsByClassName('ct-app').item(0).className = "ct-app";
+
+	document.location = "http://ediary/sample.html?note="+newTitle;
+}
