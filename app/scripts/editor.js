@@ -58,7 +58,7 @@ function createNote() {
 
 	document.getElementsByClassName('ct-app').item(0).className = "ct-app";
 
-	document.location = "http://ediary/sample.html#note/"+newTitle;
+	document.location = "http://ediary/sample.html#note/"+encodeURIComponent(newTitle);
 	document.getElementById("myform").elements['newfile'].value = "";
 }
 
@@ -161,7 +161,7 @@ function loadPage() {
 	var oReq = new XMLHttpRequest();
 	oReq.onload = reqListener;
 	// oReq.overrideMimeType('application/json');
-	var note = window.location.hash.substring(1).split('/')[1];
+	var note = decodeURIComponent(window.location.hash.substring(1).split('/')[1]);
 	// console.info('PARAMS.note : '+ PARAMS.note	);
 	console.info('note : ' + note);
 	oReq.open("get", "http://ediary/html/" + note + ".html", true);
