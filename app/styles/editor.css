@@ -62,10 +62,14 @@ blockquote, h6, p {
 	color: #74848e;
 }
 
-#ediary-title, #ediary-filename {
+#ediary-title, #ediary-filename , #editor h1:first-of-type{
 	display: none
 }
 
 .hide {
 	display:none;
+}
+
+#editor-title {
+	text-decoration: underline;
 }

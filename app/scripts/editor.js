@@ -51,9 +51,12 @@ function createNote() {
 	form.className = "hide";
 
 
-	editorNode.innerHTML ='<div id="ediary-filename">'+newTitle+'</div>'+
-	'<div id="ediary-title">'+newTitle+'</div>';
+	// editorNode.innerHTML ='<div id="ediary-filename">'+newTitle+'</div>'+
+	// '<div id="ediary-title">'+newTitle+'</div>';
+
+	editorNode.innerHTML = '<h1>' + newTitle + '</h1><p></p>';
 	editorTitleNode.innerHTML=newTitle;
+
 	document.getElementById('newNoteButton').className = "";
 
 	document.getElementsByClassName('ct-app').item(0).className = "ct-app";
@@ -86,8 +89,12 @@ function loadPage() {
 
 		// Collect the contents of each region into a FormData instance
 		payload = new FormData();
-		var title = document.getElementById("ediary-title").textContent;
-		var filename = document.getElementById("ediary-filename").textContent;
+		// var title = document.getElementById("ediary-title").textContent;
+		title = document.getElementById("editor").getElementsByTagName("h1")[0].textContent;
+
+		// var filename = document.getElementById("ediary-filename").textContent;
+		// var filename = document.getElementById("ediary-filename").textContent;
+		var filename = title;
 		payload.append('__title__', title);
 		payload.append('__filename__', filename);
 		console.info('title : ' + title);
@@ -141,29 +148,36 @@ function loadPage() {
 
 	editorNode.innerHTML = "<p>Le bonheur devrait être déjà là... :/</p>";
 
-	function reqListener(ev) {
+	function loadPageListener(ev) {
 		if (ev.target.readyState === 4) {
 			var content = ev.target.responseText;
 			console.info('Request OK');
 			console.log('ev.target.responseText: ' + ev.target.responseText);
 
-			editorNode.innerHTML = '<p>' + content + '</p>';
-			titleNode = document.getElementById("ediary-title");
+			var newContent = content.replaceAll("div", "p"); // clean div to avoid editor fail
+			console.info('newContent: '+ newContent);
+			editorNode.innerHTML =  newContent;
+			// titleNode = document.getElementById("ediary-title");
+			titleNode = document.getElementById("editor").getElementsByTagName("h1")[0];
 			if (titleNode != null) {
-				editorTitleNode.innerHTML = document.getElementById("ediary-title").innerHTML;
-				console.info('Editor Title : ' + document.getElementById("ediary-title").innerHTML);
-
+				editorTitleNode.innerHTML = titleNode.innerHTML;
+				console.info('Editor Title : ' + titleNode.innerHTML);
 			}
 
 		}
 	}
 
 	var oReq = new XMLHttpRequest();
-	oReq.onload = reqListener;
+	oReq.onload = loadPageListener;
 	// oReq.overrideMimeType('application/json');
 	var note = decodeURIComponent(window.location.hash.substring(1).split('/')[1]);
 	// console.info('PARAMS.note : '+ PARAMS.note	);
 	console.info('note : ' + note);
 	oReq.open("get", "http://ediary/html/" + note + ".html", true);
 	oReq.send();
+};
+
+String.prototype.replaceAll = function (search, replacement) {
+	var target = this;
+	return target.split(search).join(replacement);
 };
