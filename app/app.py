@@ -93,7 +93,7 @@ def save_page():
     # Save changes to the HTML file
     print 'content : ' + content
     with open(filename_abs, 'w') as f:
-        f.write(content)
+        f.write(content)œ
 
     return 'saved'
 
