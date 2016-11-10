@@ -1,5 +1,5 @@
 from flask import Flask, abort, request, render_template
-import os, xml.etree.ElementTree as ET
+import os, xml.etree.ElementTree as ET, json
 
 # Create the app
 app = Flask(__name__)
@@ -96,6 +96,26 @@ def save_page():
         f.write(content)
 
     return 'saved'
+
+@app.route('/noteslist')
+def notelists():
+    """Get all files"""
+
+    strs = [x for x in os.listdir("html")]
+    myjson = json.dumps([{'filename': k} for k in os.listdir("html")], indent=4)
+
+    jsonvar= "{"
+    for file in os.listdir("html"):
+        if file.endswith(".html"):
+            print(file)
+            jsonobject = "{filename:" + file + "},"
+            jsonvar+=jsonobject
+
+    jsonvar += "{}}"
+
+    #    return jsonvar
+    return myjson
+
 
 if __name__ == "__main__":
     app.run("", "8080")
